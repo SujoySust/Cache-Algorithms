@@ -52,7 +52,7 @@ class LFUCache<T> {
 
     private incrementFrequency(key: string): void {
         const entry = this.cache.get(key)!;
-        const prevFreq = entry?.frequency ?? 0;
+        const prevFreq = entry.frequency;
         const newFreq = prevFreq + 1;
 
         // Update frequency in cache entry
@@ -60,6 +60,7 @@ class LFUCache<T> {
 
         // Remove from previous frequency set
         const prevFreqSet = this.frequencies.get(prevFreq)!;
+
         prevFreqSet.delete(key);
 
         if(prevFreqSet.size == 0) {
@@ -68,7 +69,7 @@ class LFUCache<T> {
 
         // Add to new frequency set
         if (!this.frequencies.has(newFreq)) {
-            this.frequencies.set(newFreq,new Set());
+            this.frequencies.set(newFreq,new Set());  
         }
         this.frequencies.get(newFreq)!.add(key);
     }
