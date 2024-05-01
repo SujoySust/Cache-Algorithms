@@ -1,1 +1,1 @@
-# Cache-Replacement-Algorithms
+# Cache-Algorithms
